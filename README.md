@@ -2,7 +2,7 @@
 
 ## Variables
 
-    NAME = fdf;
+    NAME = fdf
 
 - __NAME__ : This variable specifies the name of the executable file that will be generated when the program is compiled. In this case, it's set to fdf.
 
@@ -68,7 +68,11 @@
     ${CC} ${CFLAGS} -c $< -o $@
 
 - ```${OBJS_DIR}/%.o:%.c ${INCLUDES}``` : This is a pattern rule for creating object files from source files. It specifies that each .c file in the source directory should be compiled into a corresponding .o file in the object directory. It also specifies ```${INCLUDES}``` as a prerequisite, ensuring that any changes to header files trigger recompilation.
-- ```@mkdir -p ${dir $@}``` : This command creates the ```${OBJS_DIR}``` directory if it doesn't exist. The ```${dir $@}``` expression extracts the directory part of the target file path (```$@```).
+- ```@mkdir -p ${dir $@}``` :
+	- This command creates the ```${OBJS_DIR}``` directory if it doesn't exist. The ```${dir $@}``` expression extracts the directory part of the target file path (```$@```).
+	- ```@``` : This symbol tells Make to suppress the echoing of the command to the terminal. It ensures that the command is executed silently without being displayed.
+	- ```mkdir -p``` : This is the shell command to create directories. The ```-p``` option tells mkdir to create the specified directory and any necessary parent directories if they don't exist.
+	- ```${dir $@}``` : This is a special function that extracts the directory part of the target file path (```$@```). In this case, it extracts the directory part of ```${OBJS_DIR}/%.o```. So, if ```${OBJS_DIR}``` is ```obj``` and ```$@``` represents ```${OBJS_DIR}/file.o```, ```${dir $@}``` evaluates to ```obj```.
 - ```${CC} ${CFLAGS} -c $< -o $@``` : This command compiles the source file (```$<```) into an object file (```$@```). ```${CC}``` is the compiler, ```${CFLAGS}``` are the compiler flags, ```-c``` indicates compilation without linking, and ```-o $@``` specifies the output file.
 - ```$<``` and ```$@``` are automatic variables in a Makefile, each with a specific meaning :
 	- ```$<``` : This represents the first prerequisite of the rule. In the context of compiling a source file into an object file, ```$<``` refers to the source file that needs to be compiled. It's typically used on the command line to indicate the input file for the compilation process.

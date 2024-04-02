@@ -134,11 +134,12 @@ are __prerequisites__, they must be built before ```${NAME}``` can be built.
 ---
 
     clean:
-        rm -r ${OBJS_DIR}
+        rm -rf ${OBJS_DIR}
         make clean -C ${MINILIBX_PATH}
         make clean -C ${LIBFT_PATH}
 
 - __clean__ : This target removes the ```${OBJS_DIR}``` directory containing object files, and calls make clean in ```${MINILIBX_PATH}``` and ```${LIBFT_PATH}``` to clean object files in those directories.
+- __-rf__ : This is important to avoid an error in case we make make clean followed by make fclean.
 
 ---
 

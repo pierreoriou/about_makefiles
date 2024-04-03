@@ -162,7 +162,14 @@ are __prerequisites__, they must be built before ```${NAME}``` can be built.
 
 ---
 
-    .PHONY: all re clean fclean
+    run: ${NAME}
+	./${NAME}
+
+- __run__ : This rule allows you to compile and then execute your program after typing "make run".
+
+---
+
+    .PHONY: all re clean fclean run
 
 - The __.PHONY__ special target is used to prevent conflicts with files of the same name as the targets. When you declare a target as phony using .PHONY, it tells ```make``` that the target is not an actual file that make should check for changes. Instead, it's just a name for a specific action or task.
 

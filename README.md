@@ -130,6 +130,10 @@ are __prerequisites__, they must be built before ```${NAME}``` can be built.
 - ```${LIBFT_PATH}/${LIBFT_NAME}``` : This rule specifies how to build the libft.a library. It depends on the libft directory and triggers a ```make``` command in that directory.
 - ```${MINILIBX_PATH}/${MINILIBX_NAME}``` : This rule specifies how to build the libmlx.a library. It depends on the Minilibx directory and triggers a ```make``` command in that directory.
 - The ```-C``` option in the make command stands for "change directory."
+- The order of how we write rules is important, those rules shall never be written before ${NAME}
+- It is also important to notice that we type the command after a new line to follow the structure :
+> cible: dependance1 dependance2
+    commandes
 
 ---
 
